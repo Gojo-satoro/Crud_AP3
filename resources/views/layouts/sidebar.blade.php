@@ -49,7 +49,9 @@
                     <ul style="display: block;">
                         <li><a href="{{ route('documents.index') }}" class="">Subject List</a></li>
                         <li><a href="{{ route('add') }}">Subject Add</a></li>
-                        <li><a href="#">Subject Edit</a></li>
+                        <li><a href="{{ route('documents.updates') }}">Subject
+                                Edit</a></li>
+
                     </ul>
                 </li>
                 <li class="submenu">

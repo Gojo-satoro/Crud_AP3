@@ -15,6 +15,14 @@
                     </div>
                 </div>
             </div>
+            <!-- Affichage du message dans une alerte Bootstrap -->
+            @if (isset($message))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
 
             <div class="student-group-form">
                 <div class="row">
@@ -103,8 +111,8 @@
                                                 <td>{{ $document->description }}</td>
                                                 <td>{{ $document->nombre_vue }}</td>
                                                 <td>
-                                                    <a href="{{ asset('storage/' . $document->fichier) }}"
-                                                        download>Download</a>
+                                                    <a
+                                                        href="{{ route('documents.download', $document->id) }}">Télécharger</a>
                                                 </td>
                                                 <td class="text-end">
                                                     <div class="actions">
