@@ -13,14 +13,14 @@ class TempController extends Controller
     //
     public function liste()
     {
-        return view('list.index');
+        return view('subjects.list');
     }
 
 
 
     public function add()
     {
-        return view('add.index');
+        return view('subjects.add');
     }
 
 
@@ -32,7 +32,7 @@ class TempController extends Controller
         // Récupère tous les documents depuis la base de données
         $documents = DocModel::all();
         // Retourne la vue avec les documents
-        return view('list.index', compact('documents'));
+        return view('subjects.list', compact('documents'));
 
         // Vérifie si le paramètre de message est défini dans la requête
         $message = $request->input('message');
@@ -44,7 +44,7 @@ class TempController extends Controller
     // Affiche le formulaire de création d'un nouveau document
     public function create()
     {
-        return view('add.index');
+        return view('subjects.add');
     }
 
     // Enregistre un nouveau document dans la base de données
@@ -115,7 +115,7 @@ class TempController extends Controller
     public function show($id)
     {
         $document = DocModel::findOrFail($id);
-        return view('show', compact('document'));
+        return view('subjects.show', compact('document'));
     }
 
     public function edit($id)
@@ -124,12 +124,13 @@ class TempController extends Controller
         $document = DocModel::findOrFail($id);
 
         // Retourne la vue avec le formulaire de modification
-        return view('edit.index', compact('document'));
+        return view('subjects.edit', compact('document'));
     }
 
-    public function updates(){
-        
-        return view('edit.index');
+    public function updates()
+    {
+
+        return view('subjects.edit');
     }
 
     // Met à jour un document dans la base de données
