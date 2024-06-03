@@ -13,7 +13,7 @@ class TempController extends Controller
     //
     public function liste()
     {
-        return view('subjects.list');
+        return view('subjects.index');
     }
 
 
@@ -27,18 +27,12 @@ class TempController extends Controller
 
 
     // Affiche la liste de tous les documents
-    public function index(Request $request)
+    public function index()
     {
         // Récupère tous les documents depuis la base de données
         $documents = DocModel::all();
         // Retourne la vue avec les documents
-        return view('subjects.list', compact('documents'));
-
-        // Vérifie si le paramètre de message est défini dans la requête
-        $message = $request->input('message');
-
-        // Retourne la vue avec les documents et le message
-        return view('documents.index', ['documents' => $documents, 'message' => $message]);
+        return view('subjects.index', compact('documents'));
     }
 
     // Affiche le formulaire de création d'un nouveau document
