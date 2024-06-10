@@ -1,9 +1,10 @@
+<!-- resources/views/documents/show.blade.php -->
+
 @extends('layouts.app')
 
 @section('content')
     <div class="page-wrapper">
         <div class="content container-fluid">
-
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
@@ -36,8 +37,16 @@
                                 </div>
                                 <div class="col-md-6">
                                     <p><strong>Description:</strong> {{ $document->description }}</p>
-                                    <p><strong>Fichier:</strong> <a
-                                            href="{{ route('documents.download', $document->id) }}">Télécharger</a></p>
+                                    @if ($document->extension == 'pdf')
+                                        <embed src="{{ asset('storage/documents/' . $document->fichier) }}"
+                                            type="application/pdf" width="100%" height="600px" />
+                                    @elseif (in_array($document->extension, ['jpg', 'jpeg', 'png', 'gif']))
+                                        <img src="{{ asset('storage/adocuments/' . $document->fichier) }}"
+                                            alt="{{ $document->titre }}" style="max-width: 100%; height: auto;" />
+                                    @else
+                                        <p><strong>Fichier:</strong> <a
+                                                href="{{ route('documents.download', $document->id) }}">Télécharger</a></p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -54,6 +63,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 @endsection

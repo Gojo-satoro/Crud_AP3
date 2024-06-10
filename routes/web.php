@@ -30,3 +30,5 @@ Route::put('/documents/{id}', [TempController::class, 'update'])->name('document
 Route::delete('/documents/{id}', [TempController::class, 'destroy'])->name('documents.destroy'); // Supprimer un document spécifique
 Route::get('/documents/{id}/download', [TempController::class, 'download'])->name('documents.download');
 Route::get('/documents', [TempController::class, 'updates'])->name('documents.updates');
+
+Route::get('/search', [TempController::class, 'search'])->name('search');

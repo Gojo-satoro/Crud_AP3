@@ -197,4 +197,25 @@ class TempController extends Controller
         // Rediriger vers la liste des documents avec un message de succès
         return redirect()->route('documents.index')->with('success', 'Document supprimé avec succès.');
     }
+
+    public function search(Request $request)
+    {
+        $query = DocModel::query();
+
+        if ($request->filled('ID')) {
+            $query->where('id', $request->ID);
+        }
+
+        if ($request->filled('Titre')) {
+            $query->where('titre', 'like', '%' . $request->Titre . '%');
+        }
+
+        if ($request->filled('annee')) {
+            $query->whereYear('publier_le', $request->annee);
+        }
+
+        $documents = $query->get();
+
+        return view('subjects.index', compact('documents'));
+    }
 }
